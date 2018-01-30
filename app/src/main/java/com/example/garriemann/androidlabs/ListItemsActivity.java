@@ -11,4 +11,3 @@ public class ListItemsActivity extends Activity {
         setContentView(R.layout.activity_list_items);
     }
 }
-0

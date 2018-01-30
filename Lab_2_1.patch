@@ -1,0 +1,293 @@
+Index: app/src/main/res/values-pa-rIN/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-pa-rIN/strings.xml	(date 1517346798000)
++++ app/src/main/res/values-pa-rIN/strings.xml	(revision )
+@@ -2,4 +2,11 @@
+ <resources>
+     <string name="helloMessage">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਦੁਨਿਆ</string>
+     <string name="ButtonText">ਮੈਂ ਇੱਕ ਬਟਨ ਹਾਂ</string>
++    <string name="Login">ਲਾਗਿਨ</string>
++    <string name="LoginName">ਲਾਗਿਨ ਨਾਮ</string>
++    <string name="password">ਪਾਸਵਰਡ</string>
++    <string name="Switch">ਇਹ ਕੀ ਕਰਦਾ ਹੈ?</string>
++    <string name="RadioButton">ਰੇਡੀਓ ਬਟਨ </string>
++    <string name="CheckBox">ਚੈੱਕ ਬਾਕਸ</string>
++
+ </resources>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(date 1517346798000)
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -13,6 +13,13 @@
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++        <activity android:name=".LoginActivity">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(revision )
++++ app/src/main/res/layout/activity_login.xml	(revision )
+@@ -0,0 +1,47 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context="com.example.garriemann.androidlabs.LoginActivity">
++
++    <TextView
++        android:id="@+id/textView"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="@string/Login" />
++
++    <EditText
++        android:id="@+id/editText"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:inputType="textEmailAddress"
++        android:text="@string/LoginName" />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="@string/password" />
++
++    <EditText
++        android:id="@+id/editText2"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:inputType="textPassword"
++        android:text="passs" />
++
++
++    <ImageView
++        android:id="@+id/imageView"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:src="@drawable/flag" />
++
++
++</LinearLayout>
++
+Index: app/src/main/java/com/example/garriemann/androidlabs/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/garriemann/androidlabs/LoginActivity.java	(revision )
++++ app/src/main/java/com/example/garriemann/androidlabs/LoginActivity.java	(revision )
+@@ -0,0 +1,13 @@
++package com.example.garriemann.androidlabs;
++
++import android.app.Activity;
++import android.os.Bundle;
++
++public class LoginActivity extends Activity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_login);
++    }
++}
+Index: app/src/main/res/values-en/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-en/strings.xml	(revision )
++++ app/src/main/res/values-en/strings.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++        <string name="app_name">Lab1</string>
++        <string name="hello_message">Hello World</string>
++        <string name="ButtonText">I\'m a button</string>
++        <string name="Login">Login</string>
++        <string name="LoginName">Login Name</string>
++        <string name="password">Password</string>
++        <string name="Switch">What does this do?</string>
++        <string name="RadioButton">RadioButton</string>
++        <string name="CheckBox">CheckBox</string>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1517346798000)
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -2,5 +2,11 @@
+     <string name="app_name">AndroidLabs</string>
+     <string name="helloMessage">Hello World!</string>
+     <string name="ButtonText">I\'m a Button</string>
++    <string name="Login">Login</string>
++    <string name="LoginName">Login Name</string>
++    <string name="password">Password</string>
++    <string name="Switch">What does this do?</string>
++    <string name="RadioButton">RadioButton</string>
++    <string name="CheckBox">CheckBox</string>
+ 
+ </resources>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1517346798000)
++++ .idea/misc.xml	(revision )
+@@ -24,6 +24,9 @@
+       </value>
+     </option>
+   </component>
++  <component name="ProjectPlainTextFileTypeManager">
++    <file url="file://$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" />
++  </component>
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+diff --git app/src/main/res/drawable/flag-ca.png app/src/main/res/drawable/flag-ca.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..62c6d6ad8df4ebd4dddcd182fd597cffdaddaeb5
+GIT binary patch
+literal 2274
+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
+
+diff --git app/src/main/res/drawable-pa/flag.png app/src/main/res/drawable-pa/flag.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..37c8ed4a21d827859388b4eb82bdeec671ae40fc
+GIT binary patch
+literal 3531
+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
+
