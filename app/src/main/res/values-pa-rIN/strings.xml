@@ -2,4 +2,11 @@
 <resources>
     <string name="helloMessage">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਦੁਨਿਆ</string>
     <string name="ButtonText">ਮੈਂ ਇੱਕ ਬਟਨ ਹਾਂ</string>
+    <string name="Login">ਲਾਗਿਨ</string>
+    <string name="LoginName">ਲਾਗਿਨ ਨਾਮ</string>
+    <string name="password">ਪਾਸਵਰਡ</string>
+    <string name="Switch">ਇਹ ਕੀ ਕਰਦਾ ਹੈ?</string>
+    <string name="RadioButton">ਰੇਡੀਓ ਬਟਨ </string>
+    <string name="CheckBox">ਚੈੱਕ ਬਾਕਸ</string>
+
 </resources>
