@@ -9,72 +9,66 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LoginActivity extends Activity {
 
-    protected static final String ACTIVITY_NAME = "LoginActivity";
+  protected static final String ACTIVITY_NAME = "Login Activity";
 
-    private Button mButton3;
-    private EditText emailfield;
-
+   EditText editLogin;
+    Button lgnButton = (Button) findViewById(R.id.loginButton);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.i(ACTIVITY_NAME,"In onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        mButton3 = (Button) findViewById(R.id.button3);
-        emailfield = (EditText) findViewById(R.id.editText);
+        editLogin = findViewById(R.id.email);
 
-            final SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-            emailfield.setText(sharedPreferences.getString("DefaultEmail", "email@domain.com"));
-            mButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("DefaultEmail", emailfield.getText().toString());
-                    editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, ActivityStart.class);
-                    startActivity(intent);
+        final SharedPreferences StoredEmails = getSharedPreferences("login", Context.MODE_PRIVATE);
+        editLogin.setText(StoredEmails.getString("DefaultEmail", "email@domain.com"));
+        lgnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = StoredEmails.edit();
+                editor.putString("DefaultEmail", editLogin.getText().toString());
+                editor.commit();
 
-                }
-            });
-
-        }
-
-        @Override
-        protected void onStart() {
-            super.onStart();
-            Log.i(ACTIVITY_NAME, "In onStart()");
-
-        }
-
-        @Override
-        protected void onResume() {
-            super.onResume();
-            Log.i(ACTIVITY_NAME,"In onResume()");
-
-        }
-
-        @Override
-        protected void onStop() {
-            super.onStop();
-            Log.i(ACTIVITY_NAME,"In onStop()");
-
-        }
-
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
-            Log.i(ACTIVITY_NAME,"In onDestroy()");
-
-        }
-
-        @Override
-        protected void onPause() {
-            super.onPause();
-            Log.i(ACTIVITY_NAME,"In onPause()");
-
-        }
+                Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(ACTIVITY_NAME, "In onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(ACTIVITY_NAME,"In onResume()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(ACTIVITY_NAME,"In onStop()");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(ACTIVITY_NAME,"In onDestroy()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(ACTIVITY_NAME,"In onPause()");
+    }
+
+}
