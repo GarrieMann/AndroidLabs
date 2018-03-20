@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ਲੈਬ 5</string>
+
+    <string name="app_name">ਲੈਬ 6</string>
     <string name="hello_message">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਦੁਨਿਆ</string>
     <string name="Button">ਮੈਂ ਇੱਕ ਬਟਨ ਹਾਂ</string>
     <string name="Login">ਲਾਗਿਨ</string>
@@ -9,7 +10,8 @@
     <string name="Switch">ਇਹ ਕੀ ਕਰਦਾ ਹੈ?</string>
     <string name="RadioButton">ਰੇਡੀਓ ਬਟਨ </string>
     <string name="CheckBox">ਚੈੱਕ ਬਾਕਸ</string>
-    <string name="Button2"></string>
     <string name="CHAT">ਭੇਜੋ</string>
     <string name="start">ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="WF">ਮੋਸਮ ਪੂਰਵ ਜਾਣਕਾਰੀ</string>
+
 </resources>
