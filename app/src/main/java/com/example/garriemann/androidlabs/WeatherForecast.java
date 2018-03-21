@@ -30,6 +30,7 @@ public class WeatherForecast extends Activity {
     private TextView minTemp;
     private TextView maxTemp;
     private TextView curTemp;
+    private TextView windspeed;
     private ImageView weatherImage;
 
     @Override
@@ -42,6 +43,7 @@ public class WeatherForecast extends Activity {
         minTemp = (TextView)findViewById(R.id.min_temperature);
         maxTemp = (TextView)findViewById(R.id.max_temperature);
         curTemp = (TextView)findViewById(R.id.current_temperature);
+        windspeed = (TextView)findViewById(R.id.wind_speed);
         weatherImage = (ImageView)findViewById(R.id.imageView2);
 
         ForecastQuery forecast = new ForecastQuery();
@@ -49,6 +51,38 @@ public class WeatherForecast extends Activity {
         forecast.execute(url);
     }
 
+    public boolean isFileExists(String fileName){
+        File file = getBaseContext().getFileStreamPath(fileName);
+        Log.i(TAG, file.toString());
+        return file.exists();
+    }
+
+    public Bitmap getImage(URL url){
+        Log.i(TAG, "In getImage");
+        HttpURLConnection connection = null;
+        try{
+            connection = (HttpURLConnection)url.openConnection();
+            int responseCode = connection.getResponseCode();
+            if(responseCode == 200){
+                Log.i(TAG, "downloading image");
+                Bitmap bm = BitmapFactory.decodeStream(connection.getInputStream());
+                return bm;
+            }
+            else{
+                return null;
+            }
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+            return null;
+        }catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (connection != null){
+                connection.disconnect();
+            }
+        }
+    }
     public class ForecastQuery extends AsyncTask<String, Integer, String> {
 
         String min;
@@ -89,10 +123,14 @@ public class WeatherForecast extends Activity {
                     }
                     if (parser.getName().equals("temperature")) {
                         currentTemp = parser.getAttributeValue(null, "value");
-                        publishProgress(25);
+                        //publishProgress(25);
                         min = parser.getAttributeValue(null, "min");
-                        publishProgress(50);
+                        publishProgress(25);
                         max = parser.getAttributeValue(null, "max");
+                        publishProgress(50);
+                    }
+                    if (parser.getName().equals("speed")) {
+                        windSpeed = parser.getAttributeValue(null, "value");
                         publishProgress(75);
                     }
                     if (parser.getName().equals("weather")) {
@@ -116,7 +154,6 @@ public class WeatherForecast extends Activity {
                             outputStream.close();
                             Log.i(TAG, "downloaded image");
                         }
-
                         Log.i(TAG, "filename " + iconFile);
                         publishProgress(100);
                     }
@@ -143,41 +180,11 @@ public class WeatherForecast extends Activity {
             curTemp.setText(curTemp.getText() + currentTemp + degree + "C");
             minTemp.setText(minTemp.getText() + min + degree + "C");
             maxTemp.setText(maxTemp.getText() + max + degree + "C");
+            windspeed.setText(windspeed.getText() + windSpeed );
             weatherImage.setImageBitmap(icon);
             progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
-    public boolean isFileExists(String fileName){
-        File file = getBaseContext().getFileStreamPath(fileName);
-        Log.i(TAG, file.toString());
-        return file.exists();
-    }
 
-    public Bitmap getImage(URL url){
-        Log.i(TAG, "In getImage");
-        HttpURLConnection connection = null;
-        try{
-            connection = (HttpURLConnection)url.openConnection();
-            int responseCode = connection.getResponseCode();
-            if(responseCode == 200){
-                Log.i(TAG, "downloading image");
-                Bitmap bm = BitmapFactory.decodeStream(connection.getInputStream());
-                return bm;
-            }
-            else{
-                return null;
-            }
-        }catch(MalformedURLException e){
-            e.printStackTrace();
-            return null;
-        }catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            if (connection != null){
-                connection.disconnect();
-            }
-        }
-    }
 }
