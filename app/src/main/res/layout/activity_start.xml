@@ -9,10 +9,10 @@
 
 
         <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:layout_above="@+id/button3"
+            android:id="@+id/buttonStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/buttonChat"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="15dp"
             android:text="@string/Button"
@@ -23,7 +23,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/buttonStart"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="42dp"
         android:layout_marginStart="141dp"
@@ -34,22 +34,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonChat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:text="@string/start"
-        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintLeft_toRightOf="@+id/buttonStart"
         tools:layout_editor_absoluteX="23dp"
         tools:layout_editor_absoluteY="118dp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button_Weather_forecast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button3"
+        android:layout_below="@+id/buttonChat"
         android:layout_marginTop="15dp"
         android:text="@string/WF"
         tools:layout_editor_absoluteX="3dp"

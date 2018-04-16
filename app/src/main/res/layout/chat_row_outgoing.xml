@@ -6,17 +6,18 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/row_even" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/messageText"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:text="TextView" />
+
 </LinearLayout>
 
 
