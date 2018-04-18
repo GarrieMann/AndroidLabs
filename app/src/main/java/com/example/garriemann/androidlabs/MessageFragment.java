@@ -1,8 +1,11 @@
 package com.example.garriemann.androidlabs;
 
-import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,70 +14,56 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class MessageFragment extends Fragment {
-
-    TextView msgView;
-    TextView idView;
-    Button deleteBtn;
-    String myMsg;
-    int myId;
-    long dbID;
-    ChatWindow chatWindow;
-
-    public MessageFragment() {
-        // Required empty public constructor
+    TextView tv_message;
+    TextView tv_id;
+    Button delete_button;
+    SQLiteDatabase db;
+    ChatWindow cw;
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        cw = new ChatWindow();
+        db = ChatWindow.helper.getWritableDatabase();
     }
 
-    public void setChatWindow(ChatWindow chatWindow){
-        this.chatWindow = chatWindow;
-    }
-
-    public static MessageFragment newInstance() {
-        MessageFragment myFragment = new MessageFragment();
-        return myFragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            myMsg = bundle.getString("chatMsg");
-            myId = bundle.getInt("Id");
-            Log.i("MessageFragment", myMsg);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.message_fragment, container, false);
-        msgView = (TextView) view.findViewById(R.id.messageView);
-        msgView.setText(myMsg);
-        idView = (TextView) view.findViewById(R.id.msgId);
-        idView.setText(Integer.toString(myId));
-        deleteBtn = (Button) view.findViewById(R.id.deleteMsg);
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(chatWindow != null){
-                    //tablet
-                    chatWindow.deleteMessage(myId);
-                    // once deleted the fragment is disappeared
-                    getActivity().getFragmentManager().popBackStack();
+        View page;
+        page = inflater.inflate(R.layout.message_fragment, container, false);
 
-                }
-                else{
-                    Log.i("tag","hello");
-                    Intent intent = new Intent();
-                    intent.putExtra("deleteMsgId", myId);
-                    //intent.putExtra("deleteDBMsgId", dbID);
-                    getActivity().setResult(10, intent);
-                    getActivity().finish();
-                }
+
+        tv_message = page.findViewById(R.id.message_here);
+        tv_id = page.findViewById(R.id.id_here);
+        delete_button = page.findViewById(R.id.Delete_message_button);
+
+        Bundle b = this.getArguments();
+
+
+        tv_message.setText(b.getString("message"));
+        Log.i("Message selected",b.getString("message") );
+        tv_id.setText(b.getString("id"));
+        Log.i("Message ID ",b.getString("id") );
+
+
+        delete_button.setOnClickListener(e->{
+
+            if(b.getBoolean("isTablet")){
+                db.delete(ChatDatabaseHelper.TABLE_NAME,ChatDatabaseHelper.KEY_ID +"="+b.getString("id"),null);
+                ChatWindow.list.clear();
+                ChatWindow.moveCursor();
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.remove(this);
+                ft.commit();
             }
+            else{
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("sendingID",b.getString("id") );
+                getActivity().setResult(600, resultIntent);
+                getActivity().finish();}
         });
-        return view;
+        return page;
     }
 }

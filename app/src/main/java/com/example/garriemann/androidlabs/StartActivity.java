@@ -12,11 +12,13 @@ import android.widget.Button;
 import android.content.Intent;
 
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class StartActivity extends Activity {
     String TAG = "activity_start.xml";
     Button startButton;
     Button startChat;
+    Button toolbar;
     Button weatherButton;
 
     @Override
@@ -25,54 +27,70 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
         startButton = (Button) findViewById(R.id.buttonStart);
         startButton.setPadding(0, 0, 0, 100);
+        toolbar = (Button) findViewById(R.id.toolbar_b);
+
         buttonClickAction();
         onClickStartChat();
         onClickWeather();
     }
 
-    protected void onSaveInstanceState(Bundle outState)
-    {
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i(TAG, "onSaveInstanceState");
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Log.i(TAG, "onResume");
     }
+
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         Log.i(TAG, "onPause");
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         Log.i(TAG, "onStop");
     }
+
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
     }
+
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Log.i(TAG, "onDestroy");
     }
-    private void buttonClickAction(){
-        startButton.setOnClickListener(new View.OnClickListener()
-        {
+
+    private void buttonClickAction() {
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Log.i(TAG, "clicked the button");
                 Intent intent = new Intent(StartActivity.this, ListItemsActivity.class);
                 startActivityForResult(intent, 10);
-                onActivityResult(10,10, intent);
+                onActivityResult(10, 10, intent);
+            }
+        });
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "clicked the button");
+                Intent intent = new Intent(StartActivity.this, TestToolbar.class);
+                startActivityForResult(intent, 10);
+                onActivityResult(10, 10, intent);
             }
         });
     }
+
 
     public void onActivityResult(int requestCode, int responseCode, Intent data){
         if(requestCode == 10 ) {

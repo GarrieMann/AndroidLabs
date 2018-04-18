@@ -6,42 +6,34 @@
     tools:context="com.example.garriemann.androidlabs.ChatWindow">
 
         <ListView
-            android:id="@+id/listViewChat"
+            android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/button5"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/button4"
+            android:layout_alignParentEnd="true"
+            />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Send"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:text="Send" />
+            android:layout_alignParentRight="true"
+            />
+
 
         <EditText
-
-            android:id="@+id/editTextChat"
+            android:id="@+id/editText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button4"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/button5"
             android:ems="10"
-            android:text="Type Here.."
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="465dp" />
-
-        <FrameLayout
-
-            android:id="@+id/framelayout"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:gravity="right"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-        </FrameLayout>
-
+            android:inputType="textPersonName"
+            android:layout_toLeftOf="@id/button4"/>
 </RelativeLayout>
 
